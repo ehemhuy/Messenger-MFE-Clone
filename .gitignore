@@ -1,0 +1,31 @@
+# Dependency directories
+/node_modules
+/.pnp
+.pnp.js
+
+# Built output
+/build
+/dist
+
+# Cache and logs
+/.cache
+/logs
+
+# Environment variables
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Editor specific files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
