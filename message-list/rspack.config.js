@@ -1,6 +1,8 @@
 const rspack = require("@rspack/core");
 const refreshPlugin = require("@rspack/plugin-react-refresh");
+const { DotenvPlugin } = require("rspack-plugin-dotenv");
 const isDev = process.env.NODE_ENV === "development";
+const deps = require("./package.json").dependencies;
 /**
  * @type {import('@rspack/cli').Configuration}
  */
@@ -69,6 +71,7 @@ module.exports = {
     new rspack.HtmlRspackPlugin({
       template: "./index.html",
     }),
+    new DotenvPlugin(),
     new rspack.container.ModuleFederationPlugin({
       name: "messageList",
       filename: "remoteEntry.js",
@@ -77,6 +80,7 @@ module.exports = {
       },
       shared: {
         react: {
+          requiredVersion: deps["react"],
           singleton: true,
         },
       },

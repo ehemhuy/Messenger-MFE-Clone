@@ -1,6 +1,8 @@
 const rspack = require("@rspack/core");
 const refreshPlugin = require("@rspack/plugin-react-refresh");
+const { DotenvPlugin } = require("rspack-plugin-dotenv");
 const isDev = process.env.NODE_ENV === "development";
+const deps = require("./package.json").dependencies;
 /**
  * @type {import('@rspack/cli').Configuration}
  */
@@ -69,6 +71,7 @@ module.exports = {
     new rspack.HtmlRspackPlugin({
       template: "./index.html",
     }),
+    new DotenvPlugin(),
     new rspack.container.ModuleFederationPlugin({
       name: "chat",
       filename: "remoteEntry.js",
@@ -77,12 +80,7 @@ module.exports = {
       },
       shared: {
         react: {
-          // Do not load our own version.
-          // There must be a valid shared module available at runtime.
-          // This improves build time as this module doesn't need to be compiled,
-          // but it opts-out of possible fallbacks and runtime version upgrade.
-          // import: false,
-          import: false,
+          requiredVersion: deps["react"],
           singleton: true,
         },
       },

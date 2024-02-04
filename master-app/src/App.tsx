@@ -1,16 +1,20 @@
 import React from "react";
-import "./App.css";
+import styles from "./App.module.css";
 const MessageList = React.lazy(() => import("messageList/MessageList"));
 const Chat = React.lazy(() => import("chat/Chat"));
 
 function App() {
   return (
-    <div className="App">
+    <div className={styles.App}>
       <React.Suspense fallback={"Loading ..."}>
-        <MessageList />
+        <div className={styles.MessageList}>
+          <MessageList />
+        </div>
       </React.Suspense>
       <React.Suspense fallback={"Loading ..."}>
-        <Chat />
+        <div className={styles.Chat}>
+          <Chat />
+        </div>
       </React.Suspense>
     </div>
   );

@@ -7,6 +7,8 @@
     "build": "set NODE_ENV=production && rspack build"
   },
   "dependencies": {
+    "@sendbird/chat": "^4.10.8",
+    "@sendbird/uikit-react": "^3.10.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -17,6 +19,7 @@
     "@types/react": "18.2.0",
     "@types/react-dom": "18.2.1",
     "react-refresh": "^0.14.0",
+    "rspack-plugin-dotenv": "^0.0.3",
     "typescript": "^5.0.4"
   }
 }
