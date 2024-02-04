@@ -6,6 +6,9 @@ const isDev = process.env.NODE_ENV === "development";
  */
 module.exports = {
   context: __dirname,
+  output: {
+    uniqueName: "message-list",
+  },
   entry: {
     main: "./src/main.tsx",
   },

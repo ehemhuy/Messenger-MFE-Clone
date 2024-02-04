@@ -9,6 +9,9 @@ module.exports = {
   entry: {
     main: "./src/main.tsx",
   },
+  output: {
+    uniqueName: "profile",
+  },
   resolve: {
     extensions: ["...", ".ts", ".tsx", ".jsx"],
   },

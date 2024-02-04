@@ -9,6 +9,9 @@ module.exports = {
   entry: {
     main: "./src/main.tsx",
   },
+  output: {
+    uniqueName: "chat",
+  },
   resolve: {
     extensions: ["...", ".ts", ".tsx", ".jsx"],
   },
@@ -65,6 +68,24 @@ module.exports = {
     new rspack.ProgressPlugin({}),
     new rspack.HtmlRspackPlugin({
       template: "./index.html",
+    }),
+    new rspack.container.ModuleFederationPlugin({
+      name: "chat",
+      filename: "remoteEntry.js",
+      exposes: {
+        "./Chat": "./src/App.tsx",
+      },
+      shared: {
+        react: {
+          // Do not load our own version.
+          // There must be a valid shared module available at runtime.
+          // This improves build time as this module doesn't need to be compiled,
+          // but it opts-out of possible fallbacks and runtime version upgrade.
+          // import: false,
+          import: false,
+          singleton: true,
+        },
+      },
     }),
     isDev ? new refreshPlugin() : null,
   ].filter(Boolean),

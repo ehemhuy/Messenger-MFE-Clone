@@ -38,6 +38,10 @@ module.exports = {
   entry: {
     main: "./src/main.tsx",
   },
+  output: {
+    // set uniqueName explicitly to make react-refresh works
+    uniqueName: "master-app",
+  },
   resolve: {
     extensions: ["...", ".ts", ".tsx", ".jsx"],
   },
@@ -96,6 +100,7 @@ module.exports = {
           "http://localhost:8081/remoteEntry.js",
           "messageList"
         ),
+        chat: lazyLoadRemote("http://localhost:8082/remoteEntry.js", "chat"),
       },
       shared: {
         react: {
